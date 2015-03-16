@@ -6,7 +6,7 @@ game.PlayScreen = me.ScreenObject.extend({
         // play the audio track
         me.audio.playTrack("DST-InertExponent");
         // load a level
-        me.levelDirector.loadLevel("area01");
+        me.levelDirector.loadLevel("marioLevel");
 
         // reset the score
         game.data.score = 0;

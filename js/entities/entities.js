@@ -23,7 +23,8 @@ game.PlayerEntity = me.Entity.extend({
     this.alwaysUpdate = true;
  
     // define a basic walking animation (using all frames)
-    this.renderable.addAnimation("walk",  [0, 1, 2, 3, 4, 5, 6, 7]);
+    this.renderable.addAnimation("walk",  [1, 2, 3]);
+    this.renderable.addAnimation("stop", [4]);
     // define a standing animation (using the first frame)
     this.renderable.addAnimation("stand",  [0]);
     // set the standing animation as default
@@ -107,6 +108,9 @@ update: function(dt) {
         // Do not respond to the platform (pass through)
         return false;
       }
+      else if(other.type === "fall") {
+        me.game.reset();
+      }
       break;
  
     case me.collision.types.ENEMY_OBJECT:
@@ -136,8 +140,61 @@ update: function(dt) {
   }
 });
 
+/*----------------
+  brick entity
+ ----------------- */
+game.brick = me.Entity.extend({
+  // extending the init function is not mandatory
+  // unless you need to add some extra initialization
+  init: function(x, y, settings) {
+    // call the parent constructor
+    settings.spritewidth=16;
+    settings.spriteheight=16;
+    this._super(me.Entity, 'init', [x, y , settings]);
+ 
+  },
+ 
+  // this function is called by the engine, when
+  // an object is touched by something (here collected)
+  onCollision : function () {
+  // do something when collected
+ 
+ 
+  // make sure it cannot be collected "again"
+  this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+ 
+  // remove it
+  me.game.world.removeChild(this);
+}
+});
 
-
+/*----------------
+  question mark block entity
+ ----------------- */
+game.question = me.Entity.extend({
+  // extending the init function is not mandatory
+  // unless you need to add some extra initialization
+  init: function(x, y, settings) {
+    // call the parent constructor
+    settings.spritewidth=16;
+    settings.spriteheight=16;
+    this._super(me.Entity, 'init', [x, y , settings]);
+ 
+  },
+ 
+  // this function is called by the engine, when
+  // an object is touched by something (here collected)
+  onCollision : function () {
+  // do something when collected
+ 
+ 
+  // make sure it cannot be collected "again"
+  this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+ 
+  // remove it
+  me.game.world.removeChild(this);
+}
+});
 
 /*----------------
   a Coin entity

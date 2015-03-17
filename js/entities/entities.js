@@ -21,10 +21,15 @@ game.PlayerEntity = me.Entity.extend({
  
     // ensure the player is updated even when outside of the viewport
     this.alwaysUpdate = true;
- 
+    this.die = false;
+    this.dieUp = false;
+    this.dieAnimUp = 0;
+    this.dieAnimDown = 0;
     // define a basic walking animation (using all frames)
     this.renderable.addAnimation("walk",  [1, 2, 3]);
     this.renderable.addAnimation("stop", [4]);
+    this.renderable.addAnimation("jump", [5]);
+    this.renderable.addAnimation("fall", [6]);
     // define a standing animation (using the first frame)
     this.renderable.addAnimation("stand",  [0]);
     // set the standing animation as default
@@ -64,6 +69,7 @@ update: function(dt) {
     if (me.input.isKeyPressed('jump')) {
       // make sure we are not already jumping or falling
       if (!this.body.jumping && !this.body.falling) {
+        this.renderable.setCurrentAnimation("jump");
         // set current vel to the maximum defined value
         // gravity will then do the rest
         this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
@@ -73,7 +79,22 @@ update: function(dt) {
       }
  
     }
- 
+
+    if(this.body.jumping)
+      this.renderable.setCurrentAnimation("jump");
+    if (this.die && this.dieAnimUp<2) {
+      this.renderable.setCurrentAnimation("fall");
+      this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
+      this.dieAnimUp++;
+    }
+    else if(this.die && this.dieAnimUp >= 2){
+      this.renderable.setCurrentAnimation("fall");
+      this.dieAnimDown++;
+    }
+    if(this.dieAnimDown>50){
+      me.levelDirector.reloadLevel();
+      return;
+    }
     // apply physics to the body (this moves the entity)
     this.body.update(dt);
  
@@ -109,7 +130,7 @@ update: function(dt) {
         return false;
       }
       else if(other.type === "fall") {
-        me.game.reset();
+        this.die = true;
       }
       break;
  

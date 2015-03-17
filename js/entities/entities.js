@@ -14,11 +14,10 @@ game.PlayerEntity = me.Entity.extend({
     this._super(me.Entity, 'init', [x, y, settings]);
  
     // set the default horizontal & vertical speed (accel vector)
-    this.body.setVelocity(3, 15);
- 
+    this.body.setVelocity(2, 13);
     // set the display to follow our position on both axis
     me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
- 
+    
     // ensure the player is updated even when outside of the viewport
     this.alwaysUpdate = true;
     this.die = false;
@@ -132,6 +131,33 @@ update: function(dt) {
       else if(other.type === "fall") {
         this.die = true;
       }
+      else if(other.type === "brick"){
+        if(this.body.jumping){
+          other.body.setCollisionMask(me.collision.types.NO_OBJECT);
+ 
+  // remove it
+        me.game.world.removeChild(other);
+        }
+      }
+      else if(other.type === "question"){
+        if(this.body.jumping){
+          other.renderable.setOpacity(0);
+          if(other.name==="question"){
+            other.name="notquestion";
+            var coin = new game.CoinEntity(
+              other.pos.x,
+              other.pos.y-32,
+              {
+                image: 'spinning_coin_gold',
+                width: 32,
+                height: 32
+              }
+            );
+            coin.body.addShape(new me.Ellipse(16,16,16,16));
+            me.game.world.addChild(coin,7);
+          }
+        }
+      }
       break;
  
     case me.collision.types.ENEMY_OBJECT:
@@ -162,62 +188,6 @@ update: function(dt) {
 });
 
 /*----------------
-  brick entity
- ----------------- */
-game.brick = me.Entity.extend({
-  // extending the init function is not mandatory
-  // unless you need to add some extra initialization
-  init: function(x, y, settings) {
-    // call the parent constructor
-    settings.spritewidth=16;
-    settings.spriteheight=16;
-    this._super(me.Entity, 'init', [x, y , settings]);
- 
-  },
- 
-  // this function is called by the engine, when
-  // an object is touched by something (here collected)
-  onCollision : function () {
-  // do something when collected
- 
- 
-  // make sure it cannot be collected "again"
-  this.body.setCollisionMask(me.collision.types.NO_OBJECT);
- 
-  // remove it
-  me.game.world.removeChild(this);
-}
-});
-
-/*----------------
-  question mark block entity
- ----------------- */
-game.question = me.Entity.extend({
-  // extending the init function is not mandatory
-  // unless you need to add some extra initialization
-  init: function(x, y, settings) {
-    // call the parent constructor
-    settings.spritewidth=16;
-    settings.spriteheight=16;
-    this._super(me.Entity, 'init', [x, y , settings]);
- 
-  },
- 
-  // this function is called by the engine, when
-  // an object is touched by something (here collected)
-  onCollision : function () {
-  // do something when collected
- 
- 
-  // make sure it cannot be collected "again"
-  this.body.setCollisionMask(me.collision.types.NO_OBJECT);
- 
-  // remove it
-  me.game.world.removeChild(this);
-}
-});
-
-/*----------------
   a Coin entity
  ----------------- */
 game.CoinEntity = me.CollectableEntity.extend({
@@ -226,7 +196,6 @@ game.CoinEntity = me.CollectableEntity.extend({
   init: function(x, y, settings) {
     // call the parent constructor
     this._super(me.CollectableEntity, 'init', [x, y , settings]);
- 
   },
  
   // this function is called by the engine, when

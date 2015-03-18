@@ -40,14 +40,34 @@ game.resources = [
         "src": "data/img/gui/title_screen.png"
     },
     {
+        "name": "NES - Super Mario Bros - Tile Set",
+        "type": "image",
+        "src": "data/img/map/NES - Super Mario Bros - Tile Set.png"
+    },
+    {
         "name": "area01_level_tiles",
         "type": "image",
         "src": "data/img/map/area01_level_tiles.png"
     },
     {
+        "name": "brick",
+        "type": "image",
+        "src": "data/img/sprite/brick.png"
+    },
+    {
         "name": "gripe_run_right",
         "type": "image",
         "src": "data/img/sprite/gripe_run_right.png"
+    },
+    {
+        "name": "mario_little",
+        "type": "image",
+        "src": "data/img/sprite/mario_little.png"
+    },
+    {
+        "name": "question",
+        "type": "image",
+        "src": "data/img/sprite/question.png"
     },
     {
         "name": "spinning_coin_gold",
@@ -63,5 +83,15 @@ game.resources = [
         "name": "area01",
         "type": "tmx",
         "src": "data/map/area01.tmx"
-    }
+    },
+    {
+        "name": "marioLevel",
+        "type": "tmx",
+        "src": "data/map/marioLevel.tmx"
+    },
+	{
+			"name": "mario_font",
+			"type": "xml",
+			"src": "data/font/font.fnt"
+	}
 ];

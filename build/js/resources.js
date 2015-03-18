@@ -88,10 +88,5 @@ game.resources = [
         "name": "marioLevel",
         "type": "tmx",
         "src": "data/map/marioLevel.tmx"
-    },
-	{
-			"name": "mario_font",
-			"type": "xml",
-			"src": "data/font/font.fnt"
-	}
+    }
 ];

@@ -104,6 +104,7 @@ a:after {
 	color: white;
 	font-size: 70px;
 	font-weight: 700;
+	text-shadow: 1px 1px grey;
 }
 
 #headerwrap h3 {

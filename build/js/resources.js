@@ -30,9 +30,19 @@ game.resources = [
         "src": "data/img/area01_bkg1.png"
     },
     {
+        "name": "32x32_font - Cópia",
+        "type": "image",
+        "src": "data/img/font/32x32_font - Cópia.png"
+    },
+    {
         "name": "32x32_font",
         "type": "image",
         "src": "data/img/font/32x32_font.png"
+    },
+    {
+        "name": "emulogic",
+        "type": "image",
+        "src": "data/img/font/emulogic.png"
     },
     {
         "name": "title_screen",

@@ -20,7 +20,7 @@ game.TitleScreen = me.ScreenObject.extend({
       init : function() {
         this._super(me.Renderable, 'init', [0, 0, me.game.viewport.width, me.game.viewport.height]);
         // font for the scrolling text
-        this.font = new me.Font('emulogic', 32);
+        this.font = new me.BitmapFont('32x32_font', 8);
  
          // a tween to animate the arrow
         this.scrollertween = new me.Tween(this).to({scrollerpos: -2200 }, 10000).onComplete(this.scrollover.bind(this)).start();

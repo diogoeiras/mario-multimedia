@@ -17,6 +17,7 @@ game.PlayerEntity = me.Entity.extend({
     this.body.setVelocity(2, 13);
     // set the display to follow our position on both axis
     me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+    me.game.viewport.setDeadzone(0, 0);
     
     // ensure the player is updated even when outside of the viewport
     this.alwaysUpdate = true;
@@ -132,7 +133,8 @@ update: function(dt) {
         this.die = true;
       }
       else if(other.type === "brick"){
-        if(this.body.jumping){
+        if(this.body.jumping && (response.overlapV.y<0)){
+          response.overlapV.x = 0;
           other.body.setCollisionMask(me.collision.types.NO_OBJECT);
  
   // remove it
@@ -140,17 +142,17 @@ update: function(dt) {
         }
       }
       else if(other.type === "question"){
-        if(this.body.jumping){
+        if(this.body.jumping && (response.overlapV.y<0)){
           other.renderable.setOpacity(0);
           if(other.name==="question"){
             other.name="notquestion";
             var coin = new game.CoinEntity(
-              other.pos.x,
-              other.pos.y-32,
+              other.pos.x-8,
+              other.pos.y-24,
               {
                 image: 'spinning_coin_gold',
-                width: 32,
-                height: 32
+                width: 16,
+                height: 16
               }
             );
             coin.body.addShape(new me.Ellipse(16,16,16,16));

@@ -298,7 +298,7 @@
    <property name="spriteheight" value="16"/>
    <property name="spritewidth" value="16"/>
   </properties>
-  <object id="95" name="mainPlayer" x="128" y="161.333" width="16" height="14.6667">
+  <object id="95" name="mainPlayer" x="16" y="156.833" width="16" height="14.6667">
    <properties>
     <property name="image" value="mario_little"/>
     <property name="spriteheight" value="16"/>

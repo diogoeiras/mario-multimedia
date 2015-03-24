@@ -15,12 +15,11 @@ game.HUD.Container = me.Container.extend({
  
     // make sure our object is always draw first
     this.z = Infinity;
- 
     // give a name
     this.name = "HUD";
  
     // add our child score object at the right-bottom position
-    this.addChild(new game.HUD.ScoreItem(100, 50));
+    this.addChild(new game.HUD.ScoreItem(75, 10));
   }
 });
  
@@ -44,7 +43,7 @@ game.HUD.ScoreItem = me.Renderable.extend( {
     // create a font
     this.font = new me.BitmapFont("32x32_font", 8);
     this.font.set("right");
- 
+    this.lastDT = 0;
     // local copy of the global score
     this.score = -1;
   },
@@ -55,6 +54,12 @@ game.HUD.ScoreItem = me.Renderable.extend( {
   update : function (dt) {
     // we don't draw anything fancy here, so just
     // return true if the score has been updated
+    this.lastDT+=dt;
+    if(this.lastDT>=1000){
+      game.data.timeleft-=1;
+      this.lastDT=0;  
+    }
+    
     if (this.score !== game.data.score) {
       this.score = game.data.score;
       return true;
@@ -66,9 +71,13 @@ game.HUD.ScoreItem = me.Renderable.extend( {
   * draw the score
   */
   draw : function (renderer) {
-    this.font.draw (renderer, "MARIO", this.pos.x, this.pos.y);
-    this.font.draw (renderer, game.data.score,this.pos.x,this.pos.y+8);
-    this.font.draw (renderer, "@X ", this.pos.x+40, this.pos.y+8);
-    this.font.draw (renderer, " 99",this.pos.x+56,this.pos.y+8);
+    this.font.draw (renderer, "MARIO X ", this.pos.x, this.pos.y);
+    this.font.draw (renderer, game.data.lives,this.pos.x+24, this.pos.y);
+    this.font.draw (renderer, game.data.score,this.pos.x,this.pos.y+16);
+    this.font.draw (renderer, "@X ", this.pos.x+40, this.pos.y+16);
+    this.font.draw (renderer, game.data.coins,this.pos.x+56,this.pos.y+16);
+
+    this.font.draw (renderer, "TIME", this.pos.x+150, this.pos.y);
+    this.font.draw (renderer, game.data.timeleft, this.pos.x+150, this.pos.y+16);
   }
 });

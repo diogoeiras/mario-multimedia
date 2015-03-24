@@ -75,7 +75,7 @@ update: function(dt) {
         this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
         // set the jumping flag
         this.body.jumping = true;
-        me.audio.play("jump");
+        me.audio.play("smb_jump-small");
       }
  
     }
@@ -131,12 +131,13 @@ update: function(dt) {
       }
       else if(other.type === "fall") {
         this.die = true;
+        me.audio.play("smb_mariodie");
       }
       else if(other.type === "brick"){
         if(this.body.jumping && (response.overlapV.y<0)){
           response.overlapV.x = 0;
           other.body.setCollisionMask(me.collision.types.NO_OBJECT);
- 
+          me.audio.play("smb_breakblock");
   // remove it
         me.game.world.removeChild(other);
         }
@@ -206,9 +207,10 @@ game.CoinEntity = me.CollectableEntity.extend({
   // do something when collected
  
   // play a "coin collected" sound
-  me.audio.play("cling");
+  me.audio.play("smb_coin");
   // give some score
-  game.data.score += 250;
+  game.data.score += 200;
+  game.data.coins += 1;
  
   // make sure it cannot be collected "again"
   this.body.setCollisionMask(me.collision.types.NO_OBJECT);

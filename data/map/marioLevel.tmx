@@ -172,7 +172,7 @@
     <property name="image" value="question"/>
    </properties>
   </object>
-  <object id="35" name="question" type="question" x="335.938" y="128" width="16" height="16">
+  <object id="35" name="question_powerup" type="question" x="335.938" y="128" width="16" height="16">
    <properties>
     <property name="hit" value="0"/>
     <property name="image" value="question"/>
@@ -190,7 +190,7 @@
     <property name="image" value="question"/>
    </properties>
   </object>
-  <object id="38" name="question" type="question" x="1248" y="127.909" width="16" height="16">
+  <object id="38" name="question_powerup" type="question" x="1248" y="127.909" width="16" height="16">
    <properties>
     <property name="hit" value="0"/>
     <property name="image" value="question"/>
@@ -214,7 +214,7 @@
     <property name="image" value="question"/>
    </properties>
   </object>
-  <object id="42" name="question" type="question" x="1744" y="64" width="16" height="16">
+  <object id="42" name="question_powerup" type="question" x="1744" y="64" width="16" height="16">
    <properties>
     <property name="hit" value="0"/>
     <property name="image" value="question"/>

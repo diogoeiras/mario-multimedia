@@ -159,6 +159,20 @@ update: function(dt) {
             coin.body.addShape(new me.Ellipse(16,16,16,16));
             me.game.world.addChild(coin,7);
           }
+          else if(other.name==="question_powerup"){
+            other.name="notquestion";
+            var pus = new game.PowerUp_Shroom(
+              other.pos.x-8,
+              other.pos.y-24,
+              {
+                image: 'mushroom_powerup',
+                width: 16,
+                height: 16
+              }
+            );
+            pus.body.addShape(new me.Ellipse(16,16,16,16));
+            me.game.world.addChild(pus,7);
+          }
         }
       }
       break;
@@ -218,6 +232,88 @@ game.CoinEntity = me.CollectableEntity.extend({
   // remove it
   me.game.world.removeChild(this);
 }
+});
+
+/*----------------
+  a Power up Shroom entity
+ ----------------- */
+game.PowerUp_Shroom = me.CollectableEntity.extend({
+  // extending the init function is not mandatory
+  // unless you need to add some extra initialization
+  init: function(x, y, settings) {
+    var width = settings.width;
+    var height = settings.height;
+
+    settings.spritewidth = settings.width = 16;
+    settings.spritewidth = settings.height = 16;
+
+    this._super(me.CollectableEntity, 'init', [x, y , settings]);
+    x = this.pos.x;
+  this.startX = x;
+  this.endX   = x + width - settings.spritewidth
+  this.pos.x  = x + width - settings.spritewidth;
+  // make sure it cannot be collected "again"
+  this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+  this.updateBounds();
+ 
+    // to remember which side we were walking
+  this.walkLeft = false;
+ 
+    // walking & jumping speed
+  this.body.setVelocity(4, 6);
+  },
+ 
+  // this function is called by the engine, when
+  // an object is touched by something (here collected)
+  onCollision : function (response, other) {
+    if (response.b.body.collisionType !== me.collision.types.WORLD_SHAPE) {
+      // res.y >0 means touched by something on the bottom
+      // which mean at top position for this one
+
+  // play a "coin collected" sound
+  me.audio.play("smb_coin");
+  // give some score
+  game.data.score += 200;
+        this.renderable.flicker(750);
+
+  me.game.world.removeChild(this);
+      
+      return false;
+    }
+    // Make all other objects solid
+    return true;
+  
+  // do something when collected
+ 
+ 
+  
+  // remove it
+},
+  update: function(dt) {
+ 
+    if (this.alive) {
+      if (this.walkLeft && this.pos.x <= this.startX) {
+      this.walkLeft = false;
+    } else if (!this.walkLeft && this.pos.x >= this.endX) {
+      this.walkLeft = true;
+    }
+    // make it walk
+    this.renderable.flipX(this.walkLeft);
+    this.body.vel.x += (this.walkLeft) ? -this.body.accel.x * me.timer.tick : this.body.accel.x * me.timer.tick;
+ 
+    } else {
+      this.body.vel.x = 0;
+    }
+ 
+    // update the body movement
+    this.body.update(dt);
+ 
+    // handle collisions against other shapes
+    me.collision.check(this);
+ 
+    // return true if we moved or if the renderable was updated
+    return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
+  }
 });
 
 

@@ -150,11 +150,6 @@ game.resources = [
         "src": "data/img/sprite/flower_powerup.png"
     },
     {
-        "name": "gripe_run_right",
-        "type": "image",
-        "src": "data/img/sprite/gripe_run_right.png"
-    },
-    {
         "name": "mario_little",
         "type": "image",
         "src": "data/img/sprite/mario_little.png"
@@ -173,11 +168,6 @@ game.resources = [
         "name": "spinning_coin_gold",
         "type": "image",
         "src": "data/img/sprite/spinning_coin_gold.png"
-    },
-    {
-        "name": "spinning_coin_gold2",
-        "type": "image",
-        "src": "data/img/sprite/spinning_coin_gold2.png"
     },
     {
         "name": "wheelie_right",

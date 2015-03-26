@@ -294,14 +294,14 @@
  </objectgroup>
  <objectgroup name="mainPlayer">
   <properties>
-   <property name="image" value="mario_little"/>
-   <property name="spriteheight" value="16"/>
+   <property name="image" value="mario"/>
+   <property name="spriteheight" value="32"/>
    <property name="spritewidth" value="16"/>
   </properties>
-  <object id="95" name="mainPlayer" x="16" y="156.833" width="16" height="14.6667">
+  <object id="95" name="mainPlayer" x="44" y="121.5" width="16" height="32">
    <properties>
-    <property name="image" value="mario_little"/>
-    <property name="spriteheight" value="16"/>
+    <property name="image" value="mario"/>
+    <property name="spriteheight" value="32"/>
     <property name="spritewidth" value="16"/>
    </properties>
   </object>

@@ -25,6 +25,11 @@ game.resources = [
         "src": "data/sfx/"
     },
     {
+        "name": "smb_bump",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
         "name": "smb_coin",
         "type": "audio",
         "src": "data/sfx/"
@@ -150,9 +155,9 @@ game.resources = [
         "src": "data/img/sprite/flower_powerup.png"
     },
     {
-        "name": "mario_little",
+        "name": "mario",
         "type": "image",
-        "src": "data/img/sprite/mario_little.png"
+        "src": "data/img/sprite/mario.png"
     },
     {
         "name": "mushroom_powerup",

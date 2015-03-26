@@ -18,20 +18,26 @@ game.PlayerEntity = me.Entity.extend({
     // set the display to follow our position on both axis
     me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     me.game.viewport.setDeadzone(0, 0);
-    
+    this.powerup=0;
     // ensure the player is updated even when outside of the viewport
     this.alwaysUpdate = true;
     this.die = false;
     this.dieUp = false;
     this.dieAnimUp = 0;
     this.dieAnimDown = 0;
+    this.body.removeShapeAt(0);
+    this.body.addShape(new me.Rect(16,16,16,16));
     // define a basic walking animation (using all frames)
     this.renderable.addAnimation("walk",  [1, 2, 3]);
+    this.renderable.addAnimation("walkbig", [8,9,10]);
     this.renderable.addAnimation("stop", [4]);
+    this.renderable.addAnimation("stopbig", [11]);
     this.renderable.addAnimation("jump", [5]);
+    this.renderable.addAnimation("jumpbig", [12]);
     this.renderable.addAnimation("fall", [6]);
     // define a standing animation (using the first frame)
     this.renderable.addAnimation("stand",  [0]);
+    this.renderable.addAnimation("standbig",  [7]);
     // set the standing animation as default
     this.renderable.setCurrentAnimation("stand");
 
@@ -42,14 +48,26 @@ game.PlayerEntity = me.Entity.extend({
 ------ */
 update: function(dt) {
  
+    if(this.powerup==0){
+    this.body.removeShapeAt(0);
+    this.body.addShape(new me.Rect(16,16,16,16));
+
+    }
+    else if(this.powerup ==1 ){
+    this.body.removeShapeAt(0);
+    this.body.addShape(new me.Rect(16,16,16,32));
+    }
     if (me.input.isKeyPressed('left')) {
       // flip the sprite on horizontal axis
       this.renderable.flipX(true);
       // update the entity velocity
       this.body.vel.x -= this.body.accel.x * me.timer.tick;
       // change to the walking animation
-      if (!this.renderable.isCurrentAnimation("walk")) {
-        this.renderable.setCurrentAnimation("walk");
+      if (!this.renderable.isCurrentAnimation("walk") && (!this.renderable.isCurrentAnimation("walkbig"))) {
+        if(this.powerup==0)
+          this.renderable.setCurrentAnimation("walk");
+        else if(this.powerup==1)
+          this.renderable.setCurrentAnimation("walkbig");
       }
     } else if (me.input.isKeyPressed('right')) {
       // unflip the sprite
@@ -57,31 +75,47 @@ update: function(dt) {
       // update the entity velocity
       this.body.vel.x += this.body.accel.x * me.timer.tick;
       // change to the walking animation
-      if (!this.renderable.isCurrentAnimation("walk")) {
-        this.renderable.setCurrentAnimation("walk");
+      if (!this.renderable.isCurrentAnimation("walk") && (!this.renderable.isCurrentAnimation("walkbig"))) {
+        if(this.powerup==0)
+          this.renderable.setCurrentAnimation("walk");
+        else if(this.powerup==1)
+          this.renderable.setCurrentAnimation("walkbig");
       }
     } else {
       this.body.vel.x = 0;
       // change to the standing animation
-      this.renderable.setCurrentAnimation("stand");
+      if(this.powerup==0)
+          this.renderable.setCurrentAnimation("stand");
+        else if(this.powerup==1)
+          this.renderable.setCurrentAnimation("standbig");
     }
  
     if (me.input.isKeyPressed('jump')) {
       // make sure we are not already jumping or falling
       if (!this.body.jumping && !this.body.falling) {
-        this.renderable.setCurrentAnimation("jump");
+        if(this.powerup==0)
+          this.renderable.setCurrentAnimation("jump");
+        else if(this.powerup==1)
+          this.renderable.setCurrentAnimation("jumpbig");
         // set current vel to the maximum defined value
         // gravity will then do the rest
         this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
         // set the jumping flag
         this.body.jumping = true;
-        me.audio.play("smb_jump-small");
+        if(this.powerup==0)
+          me.audio.play("smb_jump-small");
+        else if(this.powerup==1)
+          me.audio.play("smb_jump-super");
       }
  
     }
 
-    if(this.body.jumping)
-      this.renderable.setCurrentAnimation("jump");
+    if(this.body.jumping){
+      if(this.powerup==0)
+          this.renderable.setCurrentAnimation("jump");
+      else if(this.powerup==1)
+        this.renderable.setCurrentAnimation("jumpbig");
+    }
     if (this.die && this.dieAnimUp<2) {
       this.renderable.setCurrentAnimation("fall");
       this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
@@ -147,6 +181,8 @@ update: function(dt) {
           other.renderable.setOpacity(0);
           if(other.name==="question"){
             other.name="notquestion";
+
+            me.audio.play("smb_bump");
             var coin = new game.CoinEntity(
               other.pos.x-8,
               other.pos.y-24,
@@ -161,6 +197,7 @@ update: function(dt) {
           }
           else if(other.name==="question_powerup"){
             other.name="notquestion";
+            me.audio.play("smb_powerup_appears");
             var pus = new game.PowerUp_Shroom(
               other.pos.x-8,
               other.pos.y-24,
@@ -172,6 +209,9 @@ update: function(dt) {
             );
             pus.body.addShape(new me.Ellipse(16,16,16,16));
             me.game.world.addChild(pus,7);
+          }
+          else if(other.name==="notquestion"){
+            me.audio.play("smb_bump");
           }
         }
       }
@@ -252,8 +292,6 @@ game.PowerUp_Shroom = me.CollectableEntity.extend({
   this.startX = x;
   this.endX   = x + width - settings.spritewidth
   this.pos.x  = x + width - settings.spritewidth;
-  // make sure it cannot be collected "again"
-  this.body.setCollisionMask(me.collision.types.NO_OBJECT);
   this.updateBounds();
  
     // to remember which side we were walking
@@ -271,15 +309,15 @@ game.PowerUp_Shroom = me.CollectableEntity.extend({
       // which mean at top position for this one
 
   // play a "coin collected" sound
-  me.audio.play("smb_coin");
+  me.audio.play("smb_powerup");
   // give some score
-  game.data.score += 200;
-        this.renderable.flicker(750);
+  other.powerup=1;
 
   me.game.world.removeChild(this);
       
       return false;
     }
+    this.walkLeft=!this.walkLeft;
     // Make all other objects solid
     return true;
   
@@ -292,15 +330,14 @@ game.PowerUp_Shroom = me.CollectableEntity.extend({
   update: function(dt) {
  
     if (this.alive) {
-      if (this.walkLeft && this.pos.x <= this.startX) {
+     /* if (this.walkLeft && this.pos.x <= this.startX) {
       this.walkLeft = false;
     } else if (!this.walkLeft && this.pos.x >= this.endX) {
       this.walkLeft = true;
-    }
+    }*/
     // make it walk
-    this.renderable.flipX(this.walkLeft);
     this.body.vel.x += (this.walkLeft) ? -this.body.accel.x * me.timer.tick : this.body.accel.x * me.timer.tick;
- 
+  
     } else {
       this.body.vel.x = 0;
     }

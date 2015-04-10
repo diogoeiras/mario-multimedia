@@ -155,6 +155,11 @@ game.resources = [
         "src": "data/img/sprite/flower_powerup.png"
     },
     {
+        "name": "goomba",
+        "type": "image",
+        "src": "data/img/sprite/goomba.png"
+    },
+    {
         "name": "mario",
         "type": "image",
         "src": "data/img/sprite/mario.png"

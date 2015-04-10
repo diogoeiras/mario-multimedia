@@ -14,7 +14,8 @@
       this._super(me.Entity, 'init', [x, y, settings]);
    
       // set the default horizontal & vertical speed (accel vector)
-      this.body.setVelocity(2, 13);
+      this.body.setVelocity(game.data.xvel, 13);
+      
       // set the display to follow our position on both axis
       me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
       me.game.viewport.setDeadzone(0, 0);
@@ -52,7 +53,7 @@
      update the player pos
   ------ */
   update: function(dt) {
-   
+      this.body.setVelocity(game.data.xvel, 13);
       if(this.powerup==0){
       this.body.removeShapeAt(0);
       this.body.addShape(new me.Rect(16,16,16,16));
@@ -456,12 +457,12 @@
 
 
   /* --------------------------
-  an enemy Entity
+  an enemy goomba Entity
   ------------------------ */
-  game.EnemyEntity = me.Entity.extend({
+  game.Goomba = me.Entity.extend({
     init: function(x, y, settings) {
       // define this here instead of tiled
-      settings.image = "wheelie_right";
+      settings.image = "goomba";
    
       // save the area size defined in Tiled
       var width = settings.width;
@@ -469,8 +470,8 @@
    
       // adjust the size setting information to match the sprite size
       // so that the entity object is created with the right size
-      settings.spritewidth = settings.width = 64;
-      settings.spritewidth = settings.height = 64;
+      settings.spritewidth = settings.width = 16;
+      settings.spritewidth = settings.height = 16;
    
       // call the parent constructor
       this._super(me.Entity, 'init', [x, y , settings]);
@@ -483,12 +484,14 @@
    
       // manually update the entity bounds as we manually change the position
       this.updateBounds();
+      this.renderable.addAnimation("walk",  [0,1]);
+      this.renderable.addAnimation("stomped", [2]);
    
       // to remember which side we were walking
-      this.walkLeft = false;
-   
+      this.walkLeft = true;
+      this.renderable.setCurrentAnimation("walk");
       // walking & jumping speed
-      this.body.setVelocity(4, 6);
+      this.body.setVelocity(1, 6);
    
     },
    
@@ -496,16 +499,9 @@
     update: function(dt) {
    
       if (this.alive) {
-        if (this.walkLeft && this.pos.x <= this.startX) {
-        this.walkLeft = false;
-      } else if (!this.walkLeft && this.pos.x >= this.endX) {
-        this.walkLeft = true;
+           this.body.vel.x += (this.walkLeft) ? -this.body.accel.x * me.timer.tick : this.body.accel.x * me.timer.tick;
       }
-      // make it walk
-      this.renderable.flipX(this.walkLeft);
-      this.body.vel.x += (this.walkLeft) ? -this.body.accel.x * me.timer.tick : this.body.accel.x * me.timer.tick;
-   
-      } else {
+      else {
         this.body.vel.x = 0;
       }
    
@@ -524,15 +520,20 @@
      * (called when colliding with other objects)
      */
     onCollision : function (response, other) {
-      if (response.b.body.collisionType !== me.collision.types.WORLD_SHAPE) {
+      /*if (response.b.body.collisionType !== me.collision.types.WORLD_SHAPE) {
         // res.y >0 means touched by something on the bottom
         // which mean at top position for this one
         if (this.alive && (response.overlapV.y > 0) && response.a.body.falling) {
           this.renderable.flicker(750);
         }
         return false;
-      }
+      }*/
       // Make all other objects solid
+      if (response.b.body.collisionType !== me.collision.types.WORLD_SHAPE) {
+        return false;
+     
+     }
+     this.walkLeft=!this.walkLeft;
       return true;
     }
   });

@@ -25,14 +25,14 @@ game.TitleScreen = me.ScreenObject.extend({
          // a tween to animate the arrow
         this.scrollertween = new me.Tween(this).to({scrollerpos: -2200 }, 10000).onComplete(this.scrollover.bind(this)).start();
  
-        this.scroller = "A SMALL STEP BY STEP TUTORIAL FOR GAME CREATION WITH MELONJS       ";
-        this.scrollerpos = 600;
+        this.scroller = "SUPER MARIO BROS BY DIOGO RIBEIRO AND FILIPE EIRAS       ";
+        this.scrollerpos = 50;
       },
  
       // some callback for the tween objects
       scrollover : function() {
         // reset to default value
-        this.scrollerpos = 640;
+        this.scrollerpos = 200;
         this.scrollertween.to({scrollerpos: -2200 }, 10000).onComplete(this.scrollover.bind(this)).start();
       },
  
@@ -41,8 +41,8 @@ game.TitleScreen = me.ScreenObject.extend({
       },
  
       draw : function (renderer) {
-        this.font.draw(renderer, "PRESS ENTER TO PLAY", 20, 240);
-        this.font.draw(renderer, this.scroller, this.scrollerpos, 440);
+        this.font.draw(renderer, "PRESS ENTER TO PLAY", 120, 150);
+        this.font.draw(renderer, this.scroller, this.scrollerpos, 120);
       },
       onDestroyEvent : function() {
         //just in case

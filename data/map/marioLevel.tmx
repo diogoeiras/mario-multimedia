@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="212" height="13" tilewidth="16" tileheight="16" backgroundcolor="#78a3e7" nextobjectid="121">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="212" height="13" tilewidth="16" tileheight="16" backgroundcolor="#78a3e7" nextobjectid="134">
  <tileset firstgid="1" name="NES - Super Mario Bros - Tile Set" tilewidth="16" tileheight="16">
   <image source="../../../mario-multimedia-dev/data/img/map/NES - Super Mario Bros - Tile Set.png" width="528" height="448"/>
  </tileset>
@@ -24,7 +24,7 @@
     <property name="image" value="brick"/>
    </properties>
   </object>
-  <object id="4" name="brick" type="brick" x="383.909" y="127.972" width="16" height="16">
+  <object id="4" name="brick" type="brick" x="383.909" y="128" width="16" height="16">
    <properties>
     <property name="image" value="brick"/>
    </properties>
@@ -246,12 +246,10 @@
   </object>
  </objectgroup>
  <objectgroup name="collision">
-  <object id="48" x="-0.0265563" y="191.983" width="208" height="16"/>
-  <object id="51" x="208.25" y="192.25" width="208" height="16"/>
-  <object id="52" x="416" y="192" width="514.75" height="26.25"/>
-  <object id="53" x="930.75" y="191.978" width="173" height="16.5"/>
-  <object id="54" x="1136" y="191.75" width="239.75" height="17.5"/>
-  <object id="55" x="1424" y="191.75" width="877" height="19.5"/>
+  <object id="52" x="-2" y="192" width="932" height="15"/>
+  <object id="53" x="930.75" y="192" width="173" height="16.5"/>
+  <object id="54" x="1136" y="192" width="239.75" height="17.5"/>
+  <object id="55" x="1424" y="192" width="877" height="19.5"/>
   <object id="56" x="2239.5" y="192" width="208" height="16"/>
   <object id="57" x="2480.25" y="192" width="914" height="16.25"/>
   <object id="58" x="448.125" y="160.125" width="31.875" height="32.25"/>
@@ -308,5 +306,18 @@
  </objectgroup>
  <objectgroup name="goomba">
   <object id="120" name="goomba" x="328.667" y="172" width="15.3333" height="14.6667"/>
+  <object id="121" name="goomba" x="647" y="174" width="15.3333" height="14.6667"/>
+  <object id="122" name="goomba" x="875" y="170" width="15.3333" height="14.6667"/>
+  <object id="123" name="goomba" x="825.667" y="167.333" width="15.3333" height="14.6667"/>
+  <object id="124" name="goomba" x="1259" y="86" width="15.3333" height="14.6667"/>
+  <object id="125" name="goomba" x="1341.67" y="38" width="15.3333" height="14.6667"/>
+  <object id="126" name="goomba" x="1512.33" y="172.667" width="15.3333" height="14.6667"/>
+  <object id="127" name="goomba" x="1539" y="171.333" width="15.3333" height="14.6667"/>
+  <object id="128" name="goomba" x="1971" y="168.667" width="15.3333" height="14.6667"/>
+  <object id="129" name="goomba" x="1992.33" y="171.333" width="15.3333" height="14.6667"/>
+  <object id="130" name="goomba" x="2052.33" y="168.667" width="15.3333" height="14.6667"/>
+  <object id="131" name="goomba" x="2031" y="172.667" width="15.3333" height="14.6667"/>
+  <object id="132" name="goomba" x="2792.33" y="168.667" width="15.3333" height="14.6667"/>
+  <object id="133" name="goomba" x="2825.67" y="170" width="15.3333" height="14.6667"/>
  </objectgroup>
 </map>

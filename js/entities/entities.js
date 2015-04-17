@@ -355,11 +355,16 @@
         
         return false;
       }
-      if (response.b.body.collisionType !== me.collision.types.WORLD_SHAPE) {
-        return false;
+    if (response.b.body.collisionType == me.collision.types.WORLD_SHAPE) {
+      if(response.overlapV.x>0){
+        this.walkLeft=!this.walkLeft;
+      }
+        
+      return true;
      
     }
-     this.walkLeft=!this.walkLeft;
+    else return false;
+     
       // Make all other objects solid
       return true;
     // do something when collected
@@ -529,12 +534,16 @@
         return false;
       }*/
       // Make all other objects solid
-      if (response.b.body.collisionType !== me.collision.types.WORLD_SHAPE) {
-        return false;
+      if (response.b.body.collisionType == me.collision.types.WORLD_SHAPE) {
+       if(!this.walkLeft && response.overlapV.x>0){
+        this.walkLeft=true;
+       }
+        else if(this.walkLeft && response.overlapV.x<0)
+          this.walkLeft=false;
+      return true;
      
      }
-     this.walkLeft=!this.walkLeft;
-      return true;
+     else return false;
     }
   });
 

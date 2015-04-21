@@ -23,7 +23,7 @@ game.TitleScreen = me.ScreenObject.extend({
         this.font = new me.BitmapFont('32x32_font', 8);
  
          // a tween to animate the arrow
-        this.scrollertween = new me.Tween(this).to({scrollerpos: -2200 }, 10000).onComplete(this.scrollover.bind(this)).start();
+        this.scrollertween = new me.Tween(this).to({scrollerpos: -500 }, 7000).onComplete(this.scrollover.bind(this)).start();
  
         this.scroller = "SUPER MARIO BROS BY DIOGO RIBEIRO AND FILIPE EIRAS       ";
         this.scrollerpos = 50;
@@ -32,8 +32,8 @@ game.TitleScreen = me.ScreenObject.extend({
       // some callback for the tween objects
       scrollover : function() {
         // reset to default value
-        this.scrollerpos = 200;
-        this.scrollertween.to({scrollerpos: -2200 }, 10000).onComplete(this.scrollover.bind(this)).start();
+        this.scrollerpos = 400;
+        this.scrollertween.to({scrollerpos: -500 }, 7000).onComplete(this.scrollover.bind(this)).start();
       },
  
       update : function (dt) {
@@ -67,6 +67,7 @@ game.TitleScreen = me.ScreenObject.extend({
    *  action to perform when leaving this screen (state change)
    */
   onDestroyEvent : function() {
+    
     me.input.unbindKey(me.input.KEY.ENTER);
     me.input.unbindPointer(me.input.mouse.LEFT);
     me.event.unsubscribe(this.handler);

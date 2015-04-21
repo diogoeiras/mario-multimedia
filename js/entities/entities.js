@@ -260,6 +260,9 @@
           // set the jumping flag
           this.body.jumping = true;
           // play some audio
+          other.renderable.flicker(750);
+          other.renderable.setCurrentAnimation("stomped");
+          other.alive=false;
           me.audio.play("stomp");
         }
         else {
@@ -508,6 +511,7 @@
       }
       else {
         this.body.vel.x = 0;
+        me.game.world.removeChild(this);
       }
    
       // update the body movement
@@ -525,14 +529,6 @@
      * (called when colliding with other objects)
      */
     onCollision : function (response, other) {
-      /*if (response.b.body.collisionType !== me.collision.types.WORLD_SHAPE) {
-        // res.y >0 means touched by something on the bottom
-        // which mean at top position for this one
-        if (this.alive && (response.overlapV.y > 0) && response.a.body.falling) {
-          this.renderable.flicker(750);
-        }
-        return false;
-      }*/
       // Make all other objects solid
       if (response.b.body.collisionType == me.collision.types.WORLD_SHAPE) {
        if(!this.walkLeft && response.overlapV.x>0){

@@ -267,7 +267,9 @@
         }
         else {
           // let's flicker in case we touched an enemy
-          this.renderable.flicker(750);
+
+          if(other.alive)
+            this.renderable.flicker(750);
         }
         return false;
         break;
@@ -531,13 +533,14 @@
     onCollision : function (response, other) {
       // Make all other objects solid
       if (response.b.body.collisionType == me.collision.types.WORLD_SHAPE) {
+        if(other.type==="brick")
+          return true;
        if(!this.walkLeft && response.overlapV.x>0){
         this.walkLeft=true;
        }
         else if(this.walkLeft && response.overlapV.x<0)
           this.walkLeft=false;
       return true;
-     
      }
      else return false;
     }

@@ -15,6 +15,76 @@ game.resources = [
         "src": "data/sfx/"
     },
     {
+        "name": "smb_1-up",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_breakblock",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_bump",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_coin",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_flagpole",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_gameover",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_jump-small",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_jump-super",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_mariodie",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_powerup",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_powerup_appears",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_stage_clear",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_stomp",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
+        "name": "smb_warning",
+        "type": "audio",
+        "src": "data/sfx/"
+    },
+    {
         "name": "stomp",
         "type": "audio",
         "src": "data/sfx/"
@@ -30,9 +100,19 @@ game.resources = [
         "src": "data/img/area01_bkg1.png"
     },
     {
+        "name": "32x32_font - Cópia",
+        "type": "image",
+        "src": "data/img/font/32x32_font - Cópia.png"
+    },
+    {
         "name": "32x32_font",
         "type": "image",
         "src": "data/img/font/32x32_font.png"
+    },
+    {
+        "name": "emulogic",
+        "type": "image",
+        "src": "data/img/font/emulogic.png"
     },
     {
         "name": "title_screen",
@@ -50,19 +130,44 @@ game.resources = [
         "src": "data/img/map/area01_level_tiles.png"
     },
     {
+        "name": "1up",
+        "type": "image",
+        "src": "data/img/sprite/1up.png"
+    },
+    {
         "name": "brick",
         "type": "image",
         "src": "data/img/sprite/brick.png"
     },
     {
-        "name": "gripe_run_right",
+        "name": "coin",
         "type": "image",
-        "src": "data/img/sprite/gripe_run_right.png"
+        "src": "data/img/sprite/coin.png"
     },
     {
-        "name": "mario_little",
+        "name": "flag",
         "type": "image",
-        "src": "data/img/sprite/mario_little.png"
+        "src": "data/img/sprite/flag.png"
+    },
+    {
+        "name": "flower_powerup",
+        "type": "image",
+        "src": "data/img/sprite/flower_powerup.png"
+    },
+    {
+        "name": "goomba",
+        "type": "image",
+        "src": "data/img/sprite/goomba.png"
+    },
+    {
+        "name": "mario",
+        "type": "image",
+        "src": "data/img/sprite/mario.png"
+    },
+    {
+        "name": "mushroom_powerup",
+        "type": "image",
+        "src": "data/img/sprite/mushroom_powerup.png"
     },
     {
         "name": "question",

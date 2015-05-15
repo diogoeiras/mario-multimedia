@@ -5,14 +5,19 @@ var game = {
     // an object where to store game information
     data : {
         // score
-        score : 0
+        score : 0,
+        coins : 0,
+        lives : 0,
+        timeleft : 315,
+        xvel : 2
+
     },
 
 
     // Run on page load.
     "onload" : function () {
     // Initialize the video.
-    if (!me.video.init("screen",  me.video.CANVAS, 640 , 420, true, 'auto')) {
+    if (!me.video.init("screen",  me.video.CANVAS, 416 , 208, true,3,true)) {
         alert("Your browser does not support HTML5 canvas.");
         return;
     }
@@ -49,11 +54,25 @@ var game = {
   // register our player entity in the object pool
   me.pool.register("mainPlayer", game.PlayerEntity);
   me.pool.register("CoinEntity", game.CoinEntity);
-  me.pool.register("EnemyEntity", game.EnemyEntity);
+  me.pool.register("PowerUp_Shroom", game.PowerUp_Shroom);
+  me.pool.register("goomba", game.Goomba);
   // enable the keyboard
   me.input.bindKey(me.input.KEY.LEFT,  "left");
   me.input.bindKey(me.input.KEY.RIGHT, "right");
   me.input.bindKey(me.input.KEY.X,     "jump", true);
+  me.input.bindKey(me.input.KEY.Z,     "run", true);
+  me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
+      // Checking bound keys
+        if (action === "run") {
+          game.data.xvel=3;
+        }
+  });
+  me.event.subscribe(me.event.KEYUP, function (action, keyCode, edge) {
+      // Checking bound keys
+        if (action === "run") {
+          game.data.xvel=2;
+        }
+  });
  
   // display the menu title
   me.state.change(me.state.MENU);

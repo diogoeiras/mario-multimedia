@@ -145,6 +145,11 @@ game.resources = [
         "src": "data/img/sprite/coin.png"
     },
     {
+        "name": "fireball",
+        "type": "image",
+        "src": "data/img/sprite/fireball.png"
+    },
+    {
         "name": "flag",
         "type": "image",
         "src": "data/img/sprite/flag.png"

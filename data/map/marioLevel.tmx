@@ -290,7 +290,6 @@
   <object id="104" name="fall" type="fall" x="1372.12" y="209.083" width="57.5" height="17.5"/>
   <object id="105" name="fall" type="fall" x="1093.13" y="210.083" width="50.5" height="17"/>
   <object id="134" x="-10" y="-36" width="20" height="272"/>
-  <object id="213" x="1280.25" y="63.75" width="128.5" height="0.5"/>
  </objectgroup>
  <objectgroup name="mainPlayer">
   <properties>

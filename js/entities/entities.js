@@ -19,7 +19,7 @@
       // set the display to follow our position on both axis
       me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
       me.game.viewport.setDeadzone(0, 0);
-      this.powerup=0;
+      this.powerup=2;
       // ensure the player is updated even when outside of the viewport
       this.alwaysUpdate = true;
       this.die = false;
@@ -46,7 +46,6 @@
       this.renderable.addAnimation("standflower",  [13]);
       // set the standing animation as default
       this.renderable.setCurrentAnimation("stand");
-
     },
    
     /* -----
@@ -100,6 +99,21 @@
             this.renderable.setCurrentAnimation("standbig");
           else if(this.powerup==2)
             this.renderable.setCurrentAnimation("standflower");
+      }
+
+      if(me.input.isKeyPressed('run') && this.powerup==2){
+        var fireball = new game.Fireball(
+                this.pos.x+24,
+                this.pos.y+16,
+                {
+                  image: 'fireball',
+                  width: 8,
+                  height: 8
+                }
+              );
+              fireball.body.addShape(new me.Ellipse(8,8,8,8));
+              me.game.world.addChild(fireball,7);
+
       }
    
       if (me.input.isKeyPressed('jump')) {
@@ -453,6 +467,63 @@
     update: function(dt) {
    
       this.body.vel.x = 0;
+   
+      // update the body movement
+      this.body.update(dt);
+   
+      // handle collisions against other shapes
+      me.collision.check(this);
+   
+      // return true if we moved or if the renderable was updated
+      return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
+    }
+  });
+
+  //Projectile Entity
+
+  game.Fireball = me.CollectableEntity.extend({
+    // extending the init function is not mandatory
+    // unless you need to add some extra initialization
+    init: function(x, y, settings) {
+      var width = settings.width;
+      var height = settings.height;
+   
+      // to remember which side we were walking
+      this.walkLeft = false;
+
+      settings.spritewidth = settings.width = 8;
+      settings.spritewidth = settings.height = 8;
+      this._super(me.CollectableEntity, 'init', [x, y , settings]);
+      this.renderable.addAnimation("proj",  [0, 1, 2, 3]);
+      this.body.setVelocity(1,0);
+      this.updateBounds();
+    },
+   
+    // this function is called by the engine, when
+    // an object is touched by something (here collected)
+    onCollision : function (response, other) {
+       if(response.b.body.collisionType == me.collision.types.WORLD_SHAPE)
+          me.game.world.removeChild(this);
+       if(response.b.body.collisionType == me.collision.types.ENEMY_OBJECT && other.name != "mainplayer"){
+          this.collidable = false;
+          me.game.world.removeChild(this);
+          me.game.world.removeChild(other);
+       }
+  },
+    update: function(dt) {
+   
+      if (this.alive) {
+       /* if (this.walkLeft && this.pos.x <= this.startX) {
+        this.walkLeft = false;
+      } else if (!this.walkLeft && this.pos.x >= this.endX) {
+        this.walkLeft = true;
+      }*/
+      // make it walk
+      this.body.vel.x += (this.walkLeft) ? -this.body.accel.x * me.timer.tick : this.body.accel.x * me.timer.tick;
+    
+      } else {
+        this.body.vel.x = 0;
+      }
    
       // update the body movement
       this.body.update(dt);

@@ -9,8 +9,9 @@ var game = {
         coins : 0,
         lives : 0,
         timeleft : 315,
-        xvel : 2
-
+        xvel : 2,
+        walkLeft : false,
+        numBallsFired : 0
     },
 
 

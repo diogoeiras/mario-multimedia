@@ -19,7 +19,7 @@
       // set the display to follow our position on both axis
       me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
       me.game.viewport.setDeadzone(0, 0);
-      this.powerup=2;
+      this.powerup=0;
       // ensure the player is updated even when outside of the viewport
       this.alwaysUpdate = true;
       this.die = false;
@@ -27,6 +27,7 @@
       this.diesound = false;
       this.dieAnimUp = 0;
       this.dieAnimDown = 0;
+      this.invincible = false;
       this.body.removeShapeAt(0);
       this.body.addShape(new me.Rect(16,16,16,16));
       // define a basic walking animation (using all frames)
@@ -63,6 +64,7 @@
       this.body.addShape(new me.Rect(16,16,16,32));
       }
       if (me.input.isKeyPressed('left')) {
+        game.data.walkLeft = true;
         // flip the sprite on horizontal axis
         this.renderable.flipX(true);
         // update the entity velocity
@@ -77,6 +79,7 @@
             this.renderable.setCurrentAnimation("walkflower");
         }
       } else if (me.input.isKeyPressed('right')) {
+        game.data.walkLeft = false;
         // unflip the sprite
         this.renderable.flipX(false);
         // update the entity velocity
@@ -101,10 +104,15 @@
             this.renderable.setCurrentAnimation("standflower");
       }
 
-      if(me.input.isKeyPressed('run') && this.powerup==2){
+      if(me.input.isKeyPressed('run') && this.powerup==2 && game.data.numBallsFired < 2){
+        game.data.numBallsFired++;
+        var pX = 0;
+        if(game.data.walkLeft)
+          pX = -24;
+        else pX = 24;
         var fireball = new game.Fireball(
-                this.pos.x+24,
-                this.pos.y+16,
+                this.pos.x+pX,
+                this.pos.y+32,
                 {
                   image: 'fireball',
                   width: 8,
@@ -156,6 +164,12 @@
         this.dieAnimDown++;
       }
       if(this.dieAnimDown>200){
+        game.data.lives--;
+        game.data.coins=0;
+        game.data.score=0;
+        game.data.walkLeft=false;
+        game.data.numBallsFired=0;
+        game.data.timeleft=315;
         me.levelDirector.reloadLevel();
         return;
       }
@@ -174,6 +188,8 @@
      * (called when colliding with other objects)
      */
     onCollision : function (response, other) {
+      if(other.name == "fireball") 
+        return false;
       switch (response.b.body.collisionType) {
       case me.collision.types.WORLD_SHAPE:
         // Simulate a platform object
@@ -267,6 +283,7 @@
         break;
    
       case me.collision.types.ENEMY_OBJECT:
+        if(other.name=="goomba"){
         if ((response.overlapV.y>0) && !this.body.jumping) {
           // bounce (force jump)
           this.body.falling = false;
@@ -281,10 +298,25 @@
         }
         else {
           // let's flicker in case we touched an enemy
-
-          if(other.alive)
+          if(other.alive && other.name != "fireball" && !this.invincible){
             this.renderable.flicker(750);
+            if(this.powerup==0){
+              this.die = true;
+              if(!this.diesound){
+               this.diesound=true;
+               this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+               me.audio.play("smb_mariodie");
+              }
+            }
+            else{
+              this.invincible=true;
+              this.powerup--;
+              setInterval(function(){this.invincible=false;},5000);
+            }
+          }
+
         }
+      }
         return false;
         break;
    
@@ -487,31 +519,49 @@
     init: function(x, y, settings) {
       var width = settings.width;
       var height = settings.height;
-   
-      // to remember which side we were walking
-      this.walkLeft = false;
-
+      this.walkLeft = game.data.walkLeft;
       settings.spritewidth = settings.width = 8;
       settings.spritewidth = settings.height = 8;
       this._super(me.CollectableEntity, 'init', [x, y , settings]);
       this.renderable.addAnimation("proj",  [0, 1, 2, 3]);
-      this.body.setVelocity(1,0);
+      this.diffX=0;
+      this.startX=this.pos.x;
+      this.body.setVelocity(3,0);
+      this.name = "fireball";
       this.updateBounds();
     },
    
     // this function is called by the engine, when
     // an object is touched by something (here collected)
     onCollision : function (response, other) {
-       if(response.b.body.collisionType == me.collision.types.WORLD_SHAPE)
+      if(other.name != "mainplayer" && other.name != "fireball"){
+       if(response.b.body.collisionType == me.collision.types.WORLD_SHAPE){
           me.game.world.removeChild(this);
-       if(response.b.body.collisionType == me.collision.types.ENEMY_OBJECT && other.name != "mainplayer"){
+          this.alive = false;
           this.collidable = false;
+          game.data.numBallsFired--;
+        }
+       if(response.b.body.collisionType == me.collision.types.ENEMY_OBJECT){
+          this.collidable = false;
+          other.alive=false;
+          this.alive = false;
           me.game.world.removeChild(this);
           me.game.world.removeChild(other);
+          game.data.numBallsFired--;
        }
+     }
+     else
+        return false;
   },
     update: function(dt) {
-   
+      this.diffX=Math.abs(this.startX-this.pos.x);
+      if(this.diffX >= 100){
+          me.game.world.removeChild(this);
+          this.alive = false;
+          this.collidable = false;
+          game.data.numBallsFired--;
+
+      }
       if (this.alive) {
        /* if (this.walkLeft && this.pos.x <= this.startX) {
         this.walkLeft = false;
@@ -520,7 +570,6 @@
       }*/
       // make it walk
       this.body.vel.x += (this.walkLeft) ? -this.body.accel.x * me.timer.tick : this.body.accel.x * me.timer.tick;
-    
       } else {
         this.body.vel.x = 0;
       }

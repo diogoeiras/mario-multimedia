@@ -20,14 +20,18 @@
       me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
       me.game.viewport.setDeadzone(0, 0);
       this.powerup=0;
+      this.invincibleTime=0;
       // ensure the player is updated even when outside of the viewport
       this.alwaysUpdate = true;
+      this.winTime=0;
       this.die = false;
       this.dieUp = false;
       this.diesound = false;
       this.dieAnimUp = 0;
       this.dieAnimDown = 0;
       this.invincible = false;
+      this.winaudio = false;
+      this.win=false;
       this.body.removeShapeAt(0);
       this.body.addShape(new me.Rect(16,16,16,16));
       // define a basic walking animation (using all frames)
@@ -53,6 +57,29 @@
      update the player pos
   ------ */
   update: function(dt) {
+      if(this.pos.x>=3230){
+        this.win=true;
+      }
+      if(this.win){
+        game.data.gameOverText = "WELL DONE";
+        this.winTime+=dt;
+        if(!this.winaudio){
+          me.audio.play("smb_stage_clear");
+         this.winaudio = true;
+        }
+      }
+      if(this.winTime>=3000){
+        me.state.change(me.state.GAMEOVER);
+      }
+      if(this.invincible)
+        this.invincibleTime+=dt;
+      if(this.invincibleTime>=1000){
+                this.invincible=false;
+                this.invincibleTime=0;
+      }
+      if(game.data.lives<=0){
+        me.state.change(me.state.GAMEOVER);
+      }
       this.body.setVelocity(game.data.xvel, 13);
       if(this.powerup==0){
       this.body.removeShapeAt(0);
@@ -298,6 +325,7 @@
         }
         else {
           // let's flicker in case we touched an enemy
+
           if(other.alive && other.name != "fireball" && !this.invincible){
             this.renderable.flicker(750);
             if(this.powerup==0){
@@ -311,7 +339,7 @@
             else{
               this.invincible=true;
               this.powerup--;
-              setInterval(function(){this.invincible=false;},5000);
+              
             }
           }
 
@@ -401,7 +429,6 @@
     me.audio.play("smb_powerup");
     // give some score
     other.powerup=1;
-
     me.game.world.removeChild(this);
         
         return false;
@@ -633,6 +660,7 @@
       }
       else {
         this.body.vel.x = 0;
+        game.data.score += 100;
         me.game.world.removeChild(this);
       }
    

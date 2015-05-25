@@ -1,19 +1,9 @@
-game.TitleScreen = me.ScreenObject.extend({
+game.GameOverScreen = me.ScreenObject.extend({
  
   /**
    *  action to perform on state change
    */
   onResetEvent : function() {
- 
-    // title screen
-    me.game.world.addChild(
-      new me.Sprite (
-        0,0,
-        me.loader.getImage('title_screen')
-      ),
-      1
-    );
-        me.audio.playTrack("DST-InertExponent");
  
     // add a new renderable component with the scrolling text
     me.game.world.addChild(new (me.Renderable.extend ({
@@ -22,12 +12,8 @@ game.TitleScreen = me.ScreenObject.extend({
         this._super(me.Renderable, 'init', [0, 0, me.game.viewport.width, me.game.viewport.height]);
         // font for the scrolling text
         this.font = new me.BitmapFont('32x32_font', 8);
+        game.data.lives = 3;
  
-         // a tween to animate the arrow
-        this.scrollertween = new me.Tween(this).to({scrollerpos: -500 }, 7000).onComplete(this.scrollover.bind(this)).start();
- 
-        this.scroller = "SUPER MARIO BROS BY DIOGO RIBEIRO AND FILIPE EIRAS       ";
-        this.scrollerpos = 50;
       },
  
       // some callback for the tween objects
@@ -42,8 +28,9 @@ game.TitleScreen = me.ScreenObject.extend({
       },
  
       draw : function (renderer) {
-        this.font.draw(renderer, "PRESS ENTER TO PLAY", 120, 150);
-        this.font.draw(renderer, this.scroller, this.scrollerpos, 120);
+        this.font.draw(renderer, game.data.gameOverText, 150, 50);
+        this.font.draw(renderer, "SCORE: " + game.data.score, 150, 100);
+        this.font.draw(renderer, "PRESS ENTER TO PLAY", 150, 150);
       },
       onDestroyEvent : function() {
         //just in case
@@ -58,7 +45,9 @@ game.TitleScreen = me.ScreenObject.extend({
       if (action === "enter") {
         // play something on tap / enter
         // this will unlock audio on mobile devices
+        game.data.gameOverText = "GAME OVER";
         me.audio.play("cling");
+        game.data.score=0;
         me.state.change(me.state.PLAY);
       }
     });

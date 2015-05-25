@@ -7,7 +7,8 @@ var game = {
         // score
         score : 0,
         coins : 0,
-        lives : 0,
+        lives : 3,
+        gameOverText: "GAME OVER",
         timeleft : 315,
         xvel : 2,
         walkLeft : false,
@@ -48,7 +49,7 @@ var game = {
       me.state.set(me.state.MENU, new game.TitleScreen());
         // set the "Play/Ingame" Screen Object
   me.state.set(me.state.PLAY, new game.PlayScreen());
-
+  me.state.set(me.state.GAMEOVER, new game.GameOverScreen());
   // set a global fading transition for the screen
   me.state.transition("fade", "#FFFFFF", 250);
  

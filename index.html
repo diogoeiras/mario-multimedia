@@ -40,7 +40,6 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
     </head>
     
     <body>
@@ -285,8 +284,8 @@
         
         
         <!-- Start Portfolio Section -->
-        <div class="section-modal modal fade" id="portfolio-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
+        <div class="section-modal modal fade" id="portfolio-modal" tabindex="-2" role="dialog" aria-hidden="true">
+            <div class="modal-content" id="game-container">
                 <div class="close-modal" data-dismiss="modal">
                     <div class="lr">
                         <div class="rl">
@@ -294,469 +293,219 @@
                     </div>
                 </div>
                 
-                <div class="container">
+                
+                <div class="container" id="game-list">
                     <div class="row">
                         <div class="section-title text-center">
                             <h3>Super Mario Franchise</h3>
                             <p>List of games of the Mario franchise</p>
                         </div>
                     </div>
-                    <div class="row" id="game-list">
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/1.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Super Mario Bros.</h4>
-                                    <a href="#portfolio-modal-1" data-toggle="modal"><i class="fa fa-link"></i></a>
+
+                    
+                    <div  class="row">                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/1.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Super Mario Bros.</h4>
+                                        <a href="#game-info-1"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/2.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Super Mario Bros. Lost Levels</h4>
-                                    <a href="#portfolio-modal-2" data-toggle="modal"><i class="fa fa-link"></i></a>
+                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/2.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Super Mario Bros. Lost Levels</h4>
+                                        <a href="#game-info-2"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/3.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Super Mario Bros. 2</h4>
-                                    <a href="#portfolio-modal-3" data-toggle="modal"><i class="fa fa-link"></i></a>
+                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/3.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Super Mario Bros. 2</h4>
+                                        <a href="#game-info-3"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/4.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Super Mario Bros. 3</h4>
-                                    <a href="#portfolio-modal-4" data-toggle="modal"><i class="fa fa-link"></i></a>
+                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/4.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Super Mario Bros. 3</h4>
+                                        <a href="#game-info-4"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/5.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Super Mario World</h4>
-                                    <a href="#portfolio-modal-5" data-toggle="modal"><i class="fa fa-link"></i></a>
+                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/5.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Super Mario World</h4>
+                                        <a href="#game-info-5"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/6.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Super Mario World 2: Yoshi's Island</h4>
-                                    <a href="#portfolio-modal-6" data-toggle="modal"><i class="fa fa-link"></i></a>
+                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/6.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Super Mario World 2: Yoshi's Island</h4>
+                                        <a href="#game-info-6"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/7.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Super Mario 64</h4>
-                                    <a href="#portfolio-modal-7" data-toggle="modal"><i class="fa fa-link"></i></a>
+                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/7.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Super Mario 64</h4>
+                                        <a href="#game-info-7"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/8.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Super Mario Sunshine</h4>
-                                    <a href="#portfolio-modal-8" data-toggle="modal"><i class="fa fa-link"></i></a>
+                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/8.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Super Mario Sunshine</h4>
+                                        <a href="#game-info-8"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/9.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Super Mario Galaxy</h4>
-                                    <a href="#portfolio-modal-9" data-toggle="modal"><i class="fa fa-link"></i></a>
+                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/9.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Super Mario Galaxy</h4>
+                                        <a href="#game-info-9"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/10.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Super Mario Galaxy 2</h4>
-                                    <a href="#portfolio-modal-10" data-toggle="modal"><i class="fa fa-link"></i></a>
+                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/10.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Super Mario Galaxy 2</h4>
+                                        <a href="#game-info-10"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/11.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Super Mario 3D World</h4>
-                                    <a href="#portfolio-modal-11" data-toggle="modal"><i class="fa fa-link"></i></a>
+                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/11.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Super Mario 3D World</h4>
+                                        <a href="#game-info-11"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="portfolio-item">
-                                <img src="images/portfolio/12.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
-                                <div class="portfolio-details text-center">
-                                    <h4>Paper Mario</h4>
-                                    <a href="#portfolio-modal-12" data-toggle="modal"><i class="fa fa-link"></i></a>
+                            
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <img src="images/portfolio/12.png" class="img-responsive" style="margin-left:auto;margin-right:auto;" alt="...">
+                                    <div class="portfolio-details text-center">
+                                        <h4>Paper Mario</h4>
+                                        <a href="#game-info-12"><i class="fa fa-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
+                            
+                        </div><!-- /.row -->
+                    <div class="row">
+                        <div id="game-info-1" class="panel panel-default"  tabindex="-1">
+                          <div class="panel-body">
+                            <p>Super Mario Bros. (Japanese: スーパーマリオブラザーズ Hepburn: Sūpā Mario Burazāzu?) is a 1985 platform video game internally developed by Nintendo R&D4 and published by Nintendo as a pseudo-sequel to the 1983 game Mario Bros. It was originally released in Japan for the Family Computer on September 13, 1985, and later that year for the Nintendo Entertainment System in North America, Europe on May 15, 1987 and Australia in 1987. It is the first of the Super Mario series of games. In Super Mario Bros., the player controls Mario and in a two-player game, a second player controls Mario's brother Luigi as he travels through the Mushroom Kingdom in order to rescue Princess Peach from the antagonist Bowser.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
                         </div>
-                        
-                    </div><!-- /.row -->
+                        <div id="game-info-2" class="panel panel-default"  tabindex="-1">
+                          <div class="panel-body">
+                            <p>Super Mario Bros.: The Lost Levels is a 1986 side-scrolling, platformer action game developed and published by Nintendo as the sequel to the 1985 Super Mario Bros. The games are similar in style and gameplay apart from a large increase in difficulty. Like the original, Mario or Luigi venture to rescue the Princess from Bowser. Unlike the original, the game has no two-player option and Luigi is differentiated from his twin plumber brother by having less ground friction and higher jump height. The Lost Levels also introduces setbacks like poison mushroom power-ups, counterproductive level warps, and mid-air wind gusts. The game has 32 levels across eight worlds, and five bonus worlds.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
+                        </div>
+                        <div id="game-info-3" class="panel panel-default"  tabindex="-1">
+                          <div class="panel-body">
+                            <p>Super Mario Bros. 2, released in Japan as Super Mario USA (Japanese: スーパーマリオUSA?, Sūpā Mario USA), is a 1988 platform game developed and published by Nintendo for the Nintendo Entertainment System as the North American/European sequel to the 1985 game Super Mario Bros. The game was first released in North America on October 10, 1988.[2] Super Mario Bros. 2 has been remade or re-released for several video game consoles.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
+                        </div>
+                        <div id="game-info-4" class="panel panel-default"  tabindex="-1" >
+                          <div class="panel-body">
+                            <p>Super Mario Bros. 3 (Japanese: スーパーマリオブラザーズ3 Hepburn: Sūpā Mario Burazāzu Surī?) is a 1988 platform video game developed and published by Nintendo for the Nintendo Entertainment System (NES) video game console. It is the fourth overall installment in the Super Mario Bros. series. It was first released in Japan on October 23, 1988 and later in North America on February 12, 1990. The game was developed by Nintendo Entertainment Analysis and Development, led by Shigeru Miyamoto and Takashi Tezuka. Enhanced remakes were later released on the Super NES in 1993 and the Game Boy Advance in 2003. The game has been re-released as a Virtual Console title for the Wii, Nintendo 3DS, and Wii U consoles.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
+                        </div>
+                        <div id="game-info-5" class="panel panel-default"  tabindex="-1" >
+                          <div class="panel-body">
+                            <p>Super Mario World (スーパーマリオワールド Sūpā Mario Wārudo?), subtitled Super Mario Bros. 4 (スーパーマリオブラザーズ4 Sūpā Mario Burazāzu fō?) for its original Japanese release,[1] is a 1990 platform video game developed and published by Nintendo as a pack-in launch title for the Super Nintendo Entertainment System (SNES) and is the fifth game in the Super Mario series. Development was handled by Nintendo Entertainment Analysis and Development, led by Shigeru Miyamoto, who directed the game along with Takashi Tezuka.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
+                        </div>
+                        <div id="game-info-6" class="panel panel-default"  tabindex="-1" >
+                          <div class="panel-body">
+                            <p>Super Mario World 2: Yoshi's Island[3] is a 1995 platform video game developed and published by Nintendo for the Super Nintendo Entertainment System. In order to reunite baby brothers Mario and Luigi, who has been kidnapped by the Koopalings, the player controls Yoshi, a friendly dinosaur, through 48 levels while carrying Baby Mario. As a Super Mario series platformer, Yoshi runs and jumps to reach the end of the level while solving puzzles and collecting items. In a style new to the series, the game has a hand-drawn aesthetic and is the first to have Yoshi as its main character. The game introduces his signature abilities to flutter jump, produce eggs from swallowed enemies, and transform into vehicles.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
+                        </div>
+                        <div id="game-info-7" class="panel panel-default"  tabindex="-1" >
+                          <div class="panel-body">
+                            <p>Super Mario 64 (Japanese: スーパーマリオ64 Hepburn: Sūpā Mario Rokujūyon?) is a 1996 platform video game published by Nintendo and developed by its EAD division, for the Nintendo 64. Along with Pilotwings 64, it was one of the launch titles for the console.[5] It was released in Japan on June 23, 1996, and later in North America, Europe, and Australia. More than eleven million copies of Super Mario 64 have been sold.[6][7] An enhanced remake called Super Mario 64 DS was released for the Nintendo DS in 2004.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
+                        </div>
+                        <div id="game-info-8" class="panel panel-default"  tabindex="-1" >
+                          <div class="panel-body">
+                            <p>Super Mario Sunshine (Japanese: スーパーマリオサンシャイン Hepburn: Sūpā Mario Sanshain?) is a platform video game developed by Nintendo Entertainment Analysis and Development and published by Nintendo for the GameCube. It was released in Japan in July 2002, in North America in August 2002, and in Europe and Australia in October 2002. It is the second 3D Mario platformer, following Super Mario 64 in 1996. Super Mario Sunshine‍ '​s successor is Super Mario Galaxy, which was released for the Wii in 2007.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
+                        </div>
+                        <div id="game-info-9" class="panel panel-default"  tabindex="-1" >
+                          <div class="panel-body">
+                            <p>Super Mario Galaxy (Japanese: スーパーマリオギャラクシー Hepburn: Sūpā Mario Gyarakushī?) is a 3D platform game developed by Nintendo EAD Tokyo and published by Nintendo for the Wii. It was released in most regions in November 2007, and is the third 3D original platformer in the Super Mario series after Super Mario 64 and Super Mario Sunshine. The game follows the protagonist, Mario, on a quest to rescue Princess Peach and save the universe from the game's primary antagonist, Bowser. The levels in the game are galaxies filled with minor planets and worlds, while gameplay is updated with gravity effects and new power-ups.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
+                        </div>
+                        <div id="game-info-10" class="panel panel-default"  tabindex="-1" >
+                          <div class="panel-body">
+                            <p>Super Mario Galaxy 2 (スーパーマリオギャラクシー2 Sūpā Mario Gyarakushī Tsū?) is a platforming video game developed by Nintendo EAD and published by Nintendo for the Wii. It was first announced at E3 2009 and is the sequel to Super Mario Galaxy. It was released in North America on May 23, 2010, in Japan on May 27, 2010, in Europe on June 11, 2010 and in Australia on July 1, 2010. It is the fourth original 3D platformer in the Super Mario series, after Super Mario 64, Super Mario Sunshine, and Super Mario Galaxy.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
+                        </div>
+                        <div id="game-info-11" class="panel panel-default"  tabindex="-1" >
+                          <div class="panel-body">
+                            <p>Super Mario 3D World (Japanese: スーパーマリオ3Dワールド Hepburn: Sūpā Mario Surī Dī Wārudo?) is a platform game in the Super Mario series developed by Nintendo EAD Tokyo and published by Nintendo for the Wii U video game console. Released on November 22, 2013 in North America, it is the sixth original 3D platformer in the Super Mario series and a follow-up to 2011's Nintendo 3DS game, Super Mario 3D Land. The game received critical acclaim, with its level design, multiplayer, visuals, and music all receiving high praise.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
+                        </div>
+                        <div id="game-info-12" class="panel panel-default"  tabindex="-1" >
+                          <div class="panel-body">
+                            <p>Paper Mario, known in Japanese as Mario Story (マリオストーリー Mario Sutōrī?) and originally known as Super Mario RPG 2, is a role-playing video game developed by Intelligent Systems and published by Nintendo for the Nintendo 64 game console. It was first released in Japan on August 11, 2000, in North America on February 5, 2001, and in Europe and Australia on October 5, 2001. Paper Mario was re-released for Nintendo's Wii Virtual Console in July 2007 as well as Wii U Virtual Console in 2015.</p>
+                            <a href="#game-list" ><i class="fa fa-arrow-up"></i> Go back</a>
+                          </div>
+                        </div>
+                    </div>
                 </div>
+
                 
             </div>
         </div>
         <!-- End Portfolio Section -->
 
-
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-1" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game1</h3>
-                            <p>Game1</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-2" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game2</h3>
-                            <p>Game2</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-3" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game3</h3>
-                            <p>Game3</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-4" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game4</h3>
-                            <p>Game4</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-5" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game5</h3>
-                            <p>Game5</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-6" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game6</h3>
-                            <p>Game6</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-7" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game7</h3>
-                            <p>Game7</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-8" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game8</h3>
-                            <p>Game8</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-9" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game9</h3>
-                            <p>Game9</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-10" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game10</h3>
-                            <p>Game10</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-11" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game11</h3>
-                            <p>Game11</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        <!-- Start Game Info Section -->
-        <div class="section-modal modal fade" id="portfolio-modal-12" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="section-title text-center">
-                            <h3>Game12</h3>
-                            <p>Game12</p>
-                        </div>
-                    </div>
-                    <div class="row" id="game-list">
-                        <div class="col-md-12">
-                            <p>Some text about Mario!</p>
-                        </div>                        
-                    </div><!-- /.row -->
-                </div>
-                
-            </div>
-        </div>
-        <!-- End Game Info Section -->
-        
-        
         <!-- Start About Us Section -->
         <div class="section-modal modal fade" id="about-modal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-content">
@@ -1397,7 +1146,5 @@
             </div>
         </div>
         <!-- End Testimonial Section -->
-        
     </body>
-    
 </html>

@@ -179,15 +179,14 @@ fieldset[disabled] .btn-primary.active {
 /**** Start Main Body Section ****/
 
 .mainbody-section {
-    padding-top: 50px;
-    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .menu-item {
     color: #fff;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
 	
@@ -207,8 +206,8 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .menu-item a i {
-    font-size: 50px;
-    padding-bottom: 20px;
+    font-size: 40px;
+    padding-bottom: 10px;
 }
 
 .menu-item:hover a {
@@ -225,21 +224,16 @@ and (min-width : 600px)
 and (max-width : 991px) {
     
     .menu-item {
-        display: inline-block;
-        width: 32.8%;
+        padding: 10px;
     }
     
-    .menu-item.responsive {
-        width: 49.5%;
-        float: left;
-        margin-right: 3px;
+    .menu-item a i {
+        font-size: 32px;
     }
     
-    .menu-item.responsive-2 {
-        width: 49.5%;
-        float: right;
+    .menu-item a p {
+        font-size: 16px;
     }
-    
 }
 
 
@@ -249,8 +243,7 @@ and (min-width : 992px)
 and (max-width : 1199px) {
     
     .menu-item {
-        padding-top: 15px;
-        padding-bottom: 15px;
+        padding: 15px;
     }
     
     .menu-item a i {
@@ -286,11 +279,17 @@ and (max-width : 1199px) {
     padding-bottom: 20px;
 }
 
-
+#welcome-video{
+    width:  100%    !important;
+    height: auto    !important;
+}
 
 /**** Start Modal Section ****/
 
 .section-modal .modal-content {
+    position: absolute;
+    left:0px;
+    right: 0px;
     padding: 100px 0 !important;
     min-height: 100%;
     border: 0 !important;

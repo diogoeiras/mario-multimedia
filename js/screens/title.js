@@ -13,7 +13,6 @@ game.TitleScreen = me.ScreenObject.extend({
       ),
       1
     );
-        me.audio.playTrack("DST-InertExponent");
  
     // add a new renderable component with the scrolling text
     me.game.world.addChild(new (me.Renderable.extend ({

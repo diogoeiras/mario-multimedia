@@ -31,10 +31,9 @@
         <script src="js/jquery-2.1.1.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="js/jquery.appear.js"></script>
-        <script src="js/contact_me.js"></script>
-        <script src="js/jqBootstrapValidation.js"></script>
         <script src="js/modernizr.custom.js"></script>
         <script src="js/script.js"></script>
+        <script src="assets/js/Chart.js"></script>    
 
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -764,28 +763,25 @@
                 <div class="container">
                     <div class="row">
                         <div class="section-title text-center">
-                            <h3>Client's Speech About Us</h3>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                            <h3>Polls</h3>
                         </div>
                     </div>
                     <div class="row">
                         
                         <div class="col-md-6">
-                            <div class="testimonial">
-                                <img src="images/team/manage-1.png" class="img-responsive" alt="...">
-                                <h4>John Doe</h4>
-                                <div class="speech">
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                            <div class="testimonial text-center">
+                                <h4>Who's your favourite Super Mario Character?</h4>
+                                <div>
+                                    <canvas id="favourite-character-chart" height="250" width="400"></canvas>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-md-6">
-                            <div class="testimonial">
-                                <img src="images/team/manage-2.png" class="img-responsive" alt="...">
-                                <h4>John Doe</h4>
-                                <div class="speech">
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                            <div class="testimonial text-center">
+                                <h4>What's your favourite Super Mario Game?</h4>
+                                <div>
+                                    <canvas id="favourite-game-chart"  height="250" width="400"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -797,5 +793,38 @@
             </div>
         </div>
         <!-- End Testimonial Section -->
-    </body>
+        
+        <script>
+            $(function() {
+                var favouriteCharacterData = {
+                    labels : ["Mario","Luigi","Peach","Yoshi","Others"],
+                    datasets : [
+                        {
+                            fillColor : "rgba(166,31,31,0.5)",
+                            strokeColor : "rgba(193,51,51,1)",
+                            data : [107,191,71,262,563]
+                        }
+                    ]
+
+                };
+                
+                var favouriteGameData = {
+                    labels : ["Bros. 3","World","64","Galaxy","Others"],
+                    datasets : [
+                        {
+                            fillColor : "rgba(166,31,31,0.5)",
+                            strokeColor : "rgba(193,51,51,1)",
+                            data : [113,214,202,214,521]
+                        }
+                    ]
+
+                };
+
+                var favouriteCharacterChart = new Chart(document.getElementById("favourite-character-chart").getContext("2d")).Bar(favouriteCharacterData);
+                var favouriteGameChart = new Chart(document.getElementById("favourite-game-chart").getContext("2d")).Bar(favouriteGameData);
+                
+                
+            });
+        </script>
+    </body>           
 </html>

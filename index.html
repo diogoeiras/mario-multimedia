@@ -33,7 +33,54 @@
         <script src="js/jquery.appear.js"></script>
         <script src="js/modernizr.custom.js"></script>
         <script src="js/script.js"></script>
-        <script src="assets/js/Chart.js"></script>    
+        <script src="assets/js/Chart.js"></script>
+        <style type="text/css">
+            /* Chrome, Safari, Opera */
+            @-webkit-keyframes logo {
+                0% {top:-150px;opacity: 0;}
+                100% {top:0px;opacity: 1;}
+            }
+
+            /* Standard syntax */
+            @keyframes logo {
+                0% {top:-150px;opacity: 0;}
+                100% {top:0px;opacity: 1;}
+            }
+
+            @-webkit-keyframes video {
+                0% {left:-150px;opacity: 0;}
+                100% {left:0px;opacity: 1;}
+            }
+
+            /* Standard syntax */
+            @keyframes video {
+                0% {left:-150px;opacity: 0;}
+                100% {left:0px;opacity: 1;}
+            }
+
+            @-webkit-keyframes carousel {
+                0% {right:-150px;opacity: 0;}
+                100% {right:0px;opacity: 1;}
+            }
+
+            /* Standard syntax */
+            @keyframes carousel {
+                0% {right:-150px;opacity: 0;}
+                100% {right:0px;opacity: 1;}
+            }
+
+            @-webkit-keyframes menu {
+                0% {bottom:-150px;opacity: 0;}
+                100% {bottom:0px;opacity: 1;}
+            }
+
+            /* Standard syntax */
+            @keyframes menu {
+                0% {bottom:-150px;opacity: 0;}
+                100% {bottom:0px;opacity: 1;}
+            }
+
+        </style> 
 
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -47,12 +94,25 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-xs-12">
-                        <img class="img-responsive" src="images/logo.png" style="margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:1.5em">
+                        <img class="img-responsive" src="images/logo.png" style="margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:1.5em;
+    -webkit-animation-name: logo; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+    animation-name: logo;
+    animation-duration: 2s;
+    position: relative;">
+                        <audio autoplay>
+                            <source src="sound/sm64_mario_its_me.wav" type="audio/wav">
+                        </audio>
                     </div>
                 </div>
                 <div class="row" style="padding-bottom:10px">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <video id="welcome-video" controls>
+                        <video id="welcome-video" controls style="
+    -webkit-animation-name: video; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+    animation-name: video;
+    animation-duration: 2s;
+    position: relative;">
                             <source src="assets/video/welcome.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video> 
@@ -61,7 +121,12 @@
                         
                         <!-- Start Carousel Section -->
                         <div class="home-slider">
-                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="padding-bottom: 30px;">
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="padding-bottom: 30px;
+    -webkit-animation-name: carousel; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+    animation-name: carousel;
+    animation-duration: 2s;
+    position: relative;">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
                                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -90,7 +155,12 @@
                         
                         
                     </div>
-                    <div class="col-sm-12 col-xs-12">
+                    <div class="col-sm-12 col-xs-12" style="
+    -webkit-animation-name: menu; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+    animation-name: menu;
+    animation-duration: 2s;
+    position: relative;">
                         <div class="menu-item green col-xs-6 col-sm-3 col-md-1 col-md-offset-2 ">
                             <a href="#portfolio-modal" data-toggle="modal">
                                 <i class="fa fa-file-photo-o"></i>
